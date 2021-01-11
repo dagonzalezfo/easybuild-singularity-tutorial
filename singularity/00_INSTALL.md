@@ -9,7 +9,7 @@ First, visit the [golang download page](https://golang.org/dl/) and pick a
 package archive to download.  Copy the link address and download with `wget`.
 
 ```
-$ export VERSION=1.12 OS=linux ARCH=amd64
+$ export VERSION=1.13 OS=linux ARCH=amd64
 $ cd /tmp
 $ wget https://dl.google.com/go/go$VERSION.$OS-$ARCH.tar.gz
 ```
@@ -61,7 +61,7 @@ $ cd singularity
 
 $ ./mconfig -p /usr/local
 
-$ make -C builddir/ -j$(nrpoc)
+$ make -C builddir/ -j$(nproc)
 
 $ sudo make -C builddir/ install
 ```
