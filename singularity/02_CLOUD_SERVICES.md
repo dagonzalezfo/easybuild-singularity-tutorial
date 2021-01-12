@@ -10,14 +10,30 @@ On 2018 Sylabs launched the Container Library, a comfortable home for SIF basded
 
 but first we need to go to [Sylabs Cloud](https://cloud.sylabs.io/library) and create a login user, then create a token file and store it under `$HOME/.singularity/sylabs-token`, as default. (you can always store it in a prefered path and use the `-t/--tokenfile` flag to redirect to a new path, or set the token as an env var `SYLABS-TOKEN=A_VERY_LONG_TOKEN`)
 
-> push
+**Before pushing the cow into the clouds you must sign it**
+
+#### Sign the containers
+It can be done by following the steps on the singularity documentation.
+1 - Generating the keys
+```bash
+$ singularity keys newpair
+```
+Here you have to put some informations to generate the PGP keys. I highly recommend to use the same information that you use 
+to obend your account on [Sylabs Cloud].
+
+2- Sign the container
+```bash
+$ singularity sign <container> 
+```
+
+##### push
 
 Now that we have an account in the container library, and the token file set, let's push our cow into the clouds!
 
 The Singularity push command allows you to upload your sif image to a library of your choosing.
 
 ```
-eduardo@linux> singularity push lolcow.sif library://sylabsed/examples/lolcow:latest
+eduardo@linux> singularity push lolcow.sif library://dagonzalezfo/examples/lolcow:latest
 INFO:    Now uploading lolcow.sif to the library
  139.66 MiB / 139.66 MiB [=================================================================================================================================================================] 100.00% 2.75 MiB/s 50s
 INFO:    Setting tag latest
@@ -26,7 +42,7 @@ WARNING: latest replaces an existing tag
 
 The warning is due the user `syalbsed` (aka me) already had a lolcow tagged as latest, so it must be replaced to the "new" image.
 
-> pull
+##### pull
 
 The 'pull' command allows you to download or build a container from a given URI.  Supported URIs include:
 
